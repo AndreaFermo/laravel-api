@@ -23,7 +23,7 @@
             @if ($project->image)
             <div class="myImageWrapper">
                 <img class="img-thumbnail myImageThumb" src="{{asset('storage/' . $project->image)}}" alt="{{$project->title}}"/>
-                <a href="{{route('admin.projects.deleteImage', ['slug' => $project->slug])}}" class="myImageDelete btn btn-danger">elimina</a>
+                <div id="btn-delete" class="myImageDelete btn btn-danger">elimina</div>
             </div>
             @endif
 
@@ -83,5 +83,10 @@
 
         <button type="submit" class="btn btn-primary">Salva</button>
 
+    </form>
+    <!-- per la cancellazione dell'immagine il form deve essere esterno -->
+    <form id="form-delete" action="{{route('admin.projects.deleteImage', ['slug' => $project->slug])}}" method="POST">
+        @csrf
+        @method('DELETE')
     </form>
 @endsection
