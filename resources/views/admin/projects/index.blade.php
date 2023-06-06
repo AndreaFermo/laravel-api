@@ -18,7 +18,13 @@
           <tr>
             <td>{{$project->id}}</td>
             <td>{{$project->title}}</td>
-            <td><img class="myImageIndex" src="{{asset('storage/' . $project->image)}}" alt=""></td>
+            <td>
+              @if ($project->image)
+                <img class="myImageIndex" src="{{asset('storage/' . $project->image)}}" alt="">
+              @else
+                <img class="myImageIndex" src="https://www.prolococisanobg.it/wp-content/uploads/2017/10/Non-disponibile-_04.jpg" alt="">
+              @endif              
+            </td>
             <td>{{$project->description}}</td>
             <td class="d-flex">
               <a class="btn btn-primary" href="{{route('admin.projects.show', $project->slug)}}">Mostra</a>
