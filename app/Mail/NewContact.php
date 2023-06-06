@@ -13,6 +13,8 @@ class NewContact extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $lead;
+
     /**
      * Create a new message instance.
      *
@@ -32,7 +34,7 @@ class NewContact extends Mailable
     {
         return new Envelope(
             subject: 'Nuovo contatto dal sito',
-            replayTo: $this->lead->email
+            replyTo: $this->lead->email
         );
     }
 
@@ -44,7 +46,7 @@ class NewContact extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.emails.new-contact-mail',
+            view: 'emails.new-contact-mail',
         );
     }
 
